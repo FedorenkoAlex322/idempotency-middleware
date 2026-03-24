@@ -22,8 +22,16 @@ class IdempotencyMiddleware
     {
         $idempotencyKey = $request->header('Idempotency-Key');
 
-        if ($idempotencyKey === null) {
+        if ($idempotencyKey === null || $idempotencyKey === '') {
             return $next($request);
+        }
+
+        if (mb_strlen($idempotencyKey) > 256) {
+            return new IlluminateResponse(
+                json_encode(['error' => 'Idempotency-Key must not exceed 256 characters']),
+                422,
+                ['Content-Type' => 'application/json'],
+            );
         }
 
         $hash = $this->computeHash($request, $idempotencyKey);
@@ -34,7 +42,7 @@ class IdempotencyMiddleware
             return $this->buildResponse($cached, 'hit');
         }
 
-        if ($this->storage->lock($hash, (int) config('idempotency.lock_wait_timeout'))) {
+        if ($this->storage->lock($hash, (int) config('idempotency.lock_ttl'))) {
             try {
                 // Double-check after acquiring lock
                 $cached = $this->storage->get($hash);

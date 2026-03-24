@@ -28,7 +28,7 @@ class RedisStorage implements IdempotencyStorageInterface
         }
 
         /** @var array{status: int, headers: array<string, mixed>, body: string} */
-        return json_decode((string) $result, true);
+        return json_decode((string) $result, true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -39,7 +39,7 @@ class RedisStorage implements IdempotencyStorageInterface
         /** @var \Redis $client */
         $client = Redis::connection($this->connection)->client();
 
-        $client->setex($this->prefix . $key, $ttl, json_encode($data));
+        $client->setex($this->prefix . $key, $ttl, json_encode($data, JSON_THROW_ON_ERROR));
     }
 
     public function lock(string $key, int $ttl): bool

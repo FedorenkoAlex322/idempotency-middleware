@@ -1,7 +1,6 @@
 <?php
 
 use FedorenkoAlex322\IdempotencyMiddleware\IdempotencyMiddleware;
-use FedorenkoAlex322\IdempotencyMiddleware\Storage\IdempotencyStorageInterface;
 use FedorenkoAlex322\IdempotencyMiddleware\Tests\Stubs\ArrayStorage;
 use Illuminate\Http\Request;
 

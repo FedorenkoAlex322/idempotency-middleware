@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 test('second request waits and gets cached result when lock is held', function () {
     // Create a storage that fails lock N times, then returns cached data
-    $storage = new class extends ArrayStorage {
+    $storage = new class () extends ArrayStorage {
         private int $lockAttempts = 0;
 
         public function lock(string $key, int $ttl): bool

@@ -33,6 +33,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Lock TTL (seconds)
+    |--------------------------------------------------------------------------
+    |
+    | Maximum time a lock is held in Redis. Must be greater than the expected
+    | maximum request processing time. If a request takes longer, the lock
+    | expires and another request may execute the handler.
+    |
+    */
+    'lock_ttl' => (int) env('IDEMPOTENCY_LOCK_TTL', 30),
+
+    /*
+    |--------------------------------------------------------------------------
     | Lock Wait Timeout (seconds)
     |--------------------------------------------------------------------------
     |

@@ -1,0 +1,54 @@
+{
+    "name": "fedorenko-alex322/idempotency-middleware",
+    "description": "Laravel middleware for HTTP request idempotency via Idempotency-Key header",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Fedorenko",
+            "email": "fedorenkoalex322@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/http": "^10.0||^11.0||^12.0",
+        "illuminate/redis": "^10.0||^11.0||^12.0",
+        "illuminate/support": "^10.0||^11.0||^12.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^2.0||^3.0",
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^8.0||^9.0||^10.0",
+        "pestphp/pest": "^2.0||^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FedorenkoAlex322\\IdempotencyMiddleware\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FedorenkoAlex322\\IdempotencyMiddleware\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FedorenkoAlex322\\IdempotencyMiddleware\\IdempotencyServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse",
+        "lint": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

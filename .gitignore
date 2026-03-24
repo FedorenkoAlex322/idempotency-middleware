@@ -1,0 +1,27 @@
+/vendor/
+/node_modules/
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# OS
+Thumbs.db
+.DS_Store
+
+# PHP
+composer.lock
+phpunit.result.cache
+.phpunit.cache/
+.php-cs-fixer.cache
+.phpstan.cache/
+coverage/
